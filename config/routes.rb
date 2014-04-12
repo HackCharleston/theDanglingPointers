@@ -14,7 +14,7 @@ Landstorycorps::Application.routes.draw do
   get 'location/:long/:lat/:vicinity/:name' => 'stories#location_stories', :constraints => { :long => /[+-]?\d+\.\d+/, :lat => /[+-]?\d+\.\d+/}
 
 
-  get 'stories/new/:long/:lat' => 'stories#new', :constraints => { :long => /[+-]?\d+\.\d+/, :lat => /[+-]?\d+\.\d+/}
+  get 'stories/new/:long/:lat/:vicinity/:name' => 'stories#new', :constraints => { :long => /[+-]?\d+\.\d+/, :lat => /[+-]?\d+\.\d+/}
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

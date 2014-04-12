@@ -24,16 +24,18 @@ class StoriesController < ApplicationController
   def show
     puts "current user id: #{current_user.id}"
     puts "story user id: #{@story.user_id}"
-    unless current_user.id == @story.user_id
-      flash[:notice] = "You may only view your own products."
-      redirect_to root_path
-    end
+    # unless current_user.id == @story.user_id
+    #   flash[:notice] = "You may only view your own products."
+    #   redirect_to root_path
+    # end
   end
 
   # GET /stories/new
   def new
     @lat = params[:lat]
     @long = params[:long]
+    @name = params[:name]
+    @vicinity = params[:vicinity]
     @story = Story.new
   end
 
@@ -49,9 +51,9 @@ class StoriesController < ApplicationController
   # POST /stories.json
   def create
     @story = Story.new(story_params)
+    puts story_params
     @story.user_id = current_user.id
-    puts "story lat: #{@story.latitude}"
-    puts "story long: #{@story.longitude}"
+
 
 # u.avatar = params[:file]
 # u.avatar = File.open('somewhere')
@@ -62,7 +64,8 @@ class StoriesController < ApplicationController
 
     respond_to  do |format|
       if @story.save
-        format.html { redirect_to :controller => 'stories', :action => 'location_stories', :lat => @story.latitude, :long => @story.longitude, notice: 'Story was successfully created.' }
+        # format.html { redirect_to :controller => 'stories', :action => 'location_stories',:long => @story.longitude, :lat => @story.latitude,  :vicinity => @story.vicinity, :name => @story.name, notice: 'Story was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Story was successfully created.' }
         format.json { render action: 'show', status: :created, location: @story }
       else
         format.html { render action: 'new' }
