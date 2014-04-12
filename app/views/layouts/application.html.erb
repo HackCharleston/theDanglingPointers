@@ -11,6 +11,12 @@
     <div class="navbar-inner">
       <a class="brand" href="javascript:window.history.back()"><i class="fa fa-arrow-circle-o-left fa-3x"></i></a>
       <a class="brand" href="/"><i class="fa fa-home fa-3x"></i></a>
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, :method => :delete do %>
+          <i class="fa fa-sign-out fa-3x"></i>
+        <% end %>
+<!--         <a class="brand" href="/users/sign_out" data-method="delete" rel="nofollow"><i class="fa fa-sign-out fa-3x"></i></a> -->
+      <% end %>
       <div class="brand" id='appTitle'>VStoryCorps</div>
 <!--       <ul class="nav">
         <li class="active"><a href="#">Home</a></li>
@@ -25,9 +31,6 @@
   <% end %>
   <% if alert %>
     <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
-  <% if user_signed_in? %>
-    <a href="/users/sign_out" data-method="delete" rel="nofollow">Logout</a>
   <% end %>
 
   <%= yield %>

@@ -126,7 +126,6 @@
       // }
 
       function createMarker(place) {
-        console.dir(place.geometry)
         var marker = new google.maps.Marker({
           map: map,
           position: place.geometry.location,
@@ -159,9 +158,9 @@
       var contentString = '<div id="content">'+
           '<div id="siteNotice">'+
           '</div>'+
-          '<p>View Stories: Uluru, <a href="/location/' + encodeURIComponent(place.geometry.location.A) + '/' + encodeURIComponent(place.geometry.location.k) + '" target="_blank">' +
-          'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-          '(last visited June 22, 2009).</p>'+
+          '<h4><a href="/location/' + encodeURIComponent(place.geometry.location.A) + '/' + encodeURIComponent(place.geometry.location.k) + '/' + place.vicinity + '/' + place.name + '" target="_blank">' +
+          'View VStoryCorps Stories</a> '+
+          '</h4>'+
           '</div>'+
           '</div>';
 

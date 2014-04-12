@@ -1,7 +1,9 @@
 Landstorycorps::Application.routes.draw do
   resources :stories
-
-  devise_for :users
+  devise_for :users do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
+  # devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -9,7 +11,7 @@ Landstorycorps::Application.routes.draw do
   # root 'welcome#index'
   root 'static_pages#index'
 
-  get 'location/:long/:lat' => 'stories#location_stories', :constraints => { :long => /[+-]?\d+\.\d+/, :lat => /[+-]?\d+\.\d+/}
+  get 'location/:long/:lat/:vicinity/:name' => 'stories#location_stories', :constraints => { :long => /[+-]?\d+\.\d+/, :lat => /[+-]?\d+\.\d+/}
 
 
   get 'stories/new/:long/:lat' => 'stories#new', :constraints => { :long => /[+-]?\d+\.\d+/, :lat => /[+-]?\d+\.\d+/}

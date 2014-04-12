@@ -11,7 +11,11 @@ class StoriesController < ApplicationController
   def location_stories
     @lat = params[:lat]
     @long = params[:long]
+    @name = params[:name]
+    @vicinity = params[:vicinity]
     @stories = current_user.stories.where(:latitude => @lat, :longitude => @long);
+    # @otherstories = Story.where(:latitude => @lat, :longitude => @long);
+    @otherstories = Story.all
 
   end
 

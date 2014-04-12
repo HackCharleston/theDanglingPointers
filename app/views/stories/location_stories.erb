@@ -1,8 +1,8 @@
 <div class='row-fluid'>
  <div class='span12 '>
-    <h2>Location Title</h2>
+    <h2><%= @name %></h2>
     <p>
-      Location Address
+      <%= @vicinity %>
     </p>
 
     <h1>
@@ -34,17 +34,32 @@
           <% end %>
         </li>
       <% end %>
-        </div>
-      </li>
     </ul>
 
-    <h3>Other People's Stories</h3>
-    <ul>
-      <li>this</li>
-      <li>is</li>
-      <li>a</li>
-      <li>story</li>
-      <li>list</li>
+    <h2>Stories From Others</h2>
+    <ul class="media-list">
+      <% @otherstories.each do |story| %>
+        <li class="media">
+          <%= link_to "/stories/#{story.id}" do %>
+            <span class="fa-stack fa-lg media-object pull-left">
+              <i class="fa fa-square fa-stack-2x"></i>
+              <i class="fa fa-film fa-stack-1x fa-inverse"></i>
+            </span>
+          <% end %>
+          <%= link_to story, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <span class="fa-stack fa-lg media-object pull-left">
+              <i class="fa fa-square fa-stack-2x"></i>
+              <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+            </span>
+          <% end %>
+          <%= link_to "/stories/#{story.id}" do %>
+            <div class="media-body">
+              <h4 class="media-heading"><%= story.title %></h4>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
+
    </div>
 </div>
