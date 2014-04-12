@@ -17,10 +17,10 @@
       <style>
 
         #map-canvas {
-          height: 100%;
+          height: 1000px;
           margin: 0px;
           padding: 0px;
-          width:100%;
+          width:1000px;
         }
       </style>
 
@@ -76,6 +76,12 @@
           // Browser doesn't support Geolocation
           handleNoGeolocation(false);
         }
+
+        google.maps.event.addDomListener(window, "resize", function() {
+         var center = map.getCenter();
+         google.maps.event.trigger(map, "resize");
+         map.setCenter(center);
+        });
 
         // function callback(results, status) {
         //   alert('here i am');
