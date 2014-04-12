@@ -9,9 +9,10 @@ Landstorycorps::Application.routes.draw do
   # root 'welcome#index'
   root 'static_pages#index'
 
-  get 'location/:lat/:long' => 'stories#location_stories'
+  get 'location/:long/:lat' => 'stories#location_stories', :constraints => { :long => /[+-]?\d+\.\d+/, :lat => /[+-]?\d+\.\d+/}
 
-  get 'stories/new/:lat/:long' => 'stories#new'
+
+  get 'stories/new/:long/:lat' => 'stories#new', :constraints => { :long => /[+-]?\d+\.\d+/, :lat => /[+-]?\d+\.\d+/}
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
