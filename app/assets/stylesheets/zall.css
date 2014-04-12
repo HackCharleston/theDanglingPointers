@@ -1,6 +1,8 @@
 body {
   padding-right: 0px;
   padding-left: 0px;
+  font-family: impact;
+  text-transform:uppercase;
 }
 .navbar, .navbar-inner {
   border-radius:0px;
@@ -15,4 +17,21 @@ body {
     padding-right: 0px;
     padding-left: 0px;
   }
+}
+
+ul{
+  list-style-type: square;
+}
+
+
+.fa{
+  color: #656e73;
+}
+
+h1{
+ color: #b15e1a;
+}
+
+a{
+  color: #869169;
 }
