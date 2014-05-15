@@ -5,10 +5,10 @@
     <% if user_signed_in? %>
     <style>
     body { margin:0; padding:0; }
-  #map { position:absolute; top:0; bottom:0; width:100%; }
+  #map { position:absolute; top:100px; bottom:0; width:100%; }
       #map-ui {
     position: absolute;
-    top: 75px;
+    top: 175px;
     left: 10px;
     list-style: none;
     margin: 0;
@@ -61,7 +61,9 @@
 
 
 
-
+ <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+    <script src='scripts/oltEasements.js'></script>
+    <script src='scripts/main.js'></script>
     <% else %>
 
           <a href="/users/sign_in" class='btn btn-success btn-large btn-block'>Sign In</a>
