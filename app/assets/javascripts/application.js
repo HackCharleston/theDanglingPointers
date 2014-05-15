@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require turbolinks
+//= require oltEasements
+//= require static_pages
 //= require_tree .
