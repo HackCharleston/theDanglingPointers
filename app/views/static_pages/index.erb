@@ -1,212 +1,72 @@
 <div class="row-fluid">
   <div class="span12">
-      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&key=AIzaSyDJLcKc7OSbrmFN6agLkDrF3-r-lburzhk"></script>
 
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/place/textsearch/json?query=parks+in+charleston+south+carolina&sensor=false&key=AIzaSyDJLcKc7OSbrmFN6agLkDrF3-r-lburzhk"></script>
-      <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.5/src/infobox.js"></script>
       <!--Sidebar content-->
     <% if user_signed_in? %>
-<!--       <ul>
-        <li><a href="/location/12/13">Location 1</a></li>
-        <li><a href="/location/14/15">Location 2</a></li>
-        <li><a href="/location/16/17">Location 3</a></li>
-      </ul> -->
+    <style>
+    body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+      #map-ui {
+    position: absolute;
+    top: 75px;
+    left: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 100;
+}
+
+#map-ui a {
+    font: normal 13px/18px 'Helvetica Neue', Helvetica, sans-serif;
+    background: #FFF;
+    color: #3C4E5A;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #BBB;
+    border-bottom-width: 0;
+    min-width: 138px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+#map-ui a:hover {
+    background: #ECF5FA;
+}
+
+#map-ui li:last-child a {
+    border-bottom-width: 1px;
+    -webkit-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+}
+
+#map-ui li:first-child a {
+    -webkit-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+}
+
+#map-ui a.active {
+    background: #3887BE;
+    border-color: #3887BE;
+    border-top-color: #FFF;
+    color: #FFF;
+}
+    </style>
+
+<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+ <ul id="map-ui">
+        <li><a href='#' id='geolocate'>Find me</a></li>
+    </ul>
+    <div id="map"></div>
 
 
 
-      <style>
-
-        #map-canvas {
-          height: 1000px;
-          margin: 0px;
-          padding: 0px;
-          width:1000px;
-        }
-      </style>
-
-      <!--<script type="text/javascript" src="infobox.js"></script>-->
-      <script type="text/javascript">
-      var map;
-      var service;
-      var marker;
-      var pos;
-      var infowindow;
-      var results = [];
-
-
-      function initialize() {
-
-        var mapOptions = {
-          zoom: 15
-        };
-
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-
-        // Try HTML5 geolocation
-        if (navigator.geolocation) {
-
-          // alert('go go geo');
-          navigator.geolocation.getCurrentPosition(function(position) {
-            pos = new google.maps.LatLng(position.coords.latitude,
-              position.coords.longitude);
-              window.longi = position.coords.longitude;
-              window.lati = position.coords.latitude;
-            infowindow = new google.maps.InfoWindow({
-              map: map,
-              position: pos,
-              content: 'You Are Here.'
-            });
-
-            map.setCenter(pos);
-
-            var request = {
-              location: pos,
-              radius: 20000,
-              types: ['park']
-            };
-
-            infowindow = new google.maps.InfoWindow();
-            var service = new google.maps.places.PlacesService(map);
-            service.nearbySearch(request, callback);
-          }, function() {
-            handleNoGeolocation(true);
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleNoGeolocation(false);
-        }
-
-        google.maps.event.addDomListener(window, "resize", function() {
-         var center = map.getCenter();
-         google.maps.event.trigger(map, "resize");
-         map.setCenter(center);
-        });
-
-        // function callback(results, status) {
-        //   alert('here i am');
-        //     if (status == google.maps.places.PlacesServiceStatus.OK) {
-        //         for (var i = 0; i < results.length; i++) {
-        //             console.log('after / to createMarker');
-        //             createMarker(results[i]);
-        //         }
-        //     }
-        // }
-
-        function callback(results, status) {
-          if (status == google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-              var place = results[i];
-              createMarker(results[i]);
-              //alert(results[i]); >> object Object
-
-            }
-            //console.dir(results);
-          }
-        }
-      }
-
-      function performSearch() {
-        alert('perform seach');
-        var request = {
-          bounds: map.getBounds(),
-          location: pos
-        };
-        service.textSearch(request, callback);
-      }
-
-      // function callback(results, status) {
-      //   if (status != google.maps.places.PlacesServiceStatus.OK) {
-      //     alert(status);
-      //     return;
-      //   }
-      //   for (var i = 0, result; result = results[i]; i++) {
-      //     createMarker(result);
-      //   }
-      // }
-
-      function createMarker(place) {
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location,
-          icon: {
-            //Star
-            path: 'M 0,-24 6,-7 24,-7 10,4 15,21 0,11 -15,21 -10,4 -24,-7 -6,-7 z',
-            fillColor: '#f25518',
-            fillOpacity: 1,
-            scale: 1/2,
-            strokeColor: '#222222',
-            strokeWeight: 2
-            //url: 'http://www.lolt.org/images/header/logo.png'
-          }
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-
-        //   service.getDetails(place, function(result, status) {
-        //     if (status != google.maps.places.PlacesServiceStatus.OK) {
-        //       alert(status);
-        //       return;
-        //     }
-        //     infoWindow.setContent(result.name);
-        //     infoWindow.open(map, marker);
-        //   });
-        // window.location.href = 'http://location/long/lat';
-        });
-
-
-      var contentString = '<div id="content">'+
-          '<div id="siteNotice">'+
-          '</div>'+
-          '<p><a href="/location/' + encodeURIComponent(place.geometry.location.A) + '/' + encodeURIComponent(place.geometry.location.k) + '/' + place.vicinity + '/' + place.name + '" target="_blank">' +
-          'View VStoryCorps Stories</a> '+
-          '</p>'+
-          '</div>'+
-          '</div>';
-
-      var infowindow = new google.maps.InfoWindow({
-          content: contentString
-      });
-
-      google.maps.event.addListener(marker, 'click', function() {
-        infowindow.open(map,marker);
-      });
-    }
-
-    // function createMarker(place) {
-    //     var placeLoc = place.geometry.location;
-    //     var marker = new google.maps.Marker({
-    //       map: map,
-    //       position: place.geometry.location
-    //     });
-
-    //     var request = { reference: place.reference };
-    //     service.getDetails(request, function(details, status) {
-    //       google.maps.event.addListener(marker, 'click', function() {
-    //         infowindow.setContent(details.name + "<br />" + details.formatted_address +"<br />" + details.website + "<br />" + details.rating + "<br />" + details.formatted_phone_number);
-    //         infowindow.open(map, this);
-    //       });
-    //     });
-    //   }
-
-
-        google.maps.event.addDomListener(window, 'load', initialize);
-      </script>
-      <div id="name" style="width:inherit;height:inherit">
-
-        <div id="map-canvas"></div>
-      </div>
 
     <% else %>
-<!--       <div class="hero-unit text-center"> -->
-<!--         <h1>Welcome</h1> -->
-<!--         <br> -->
-<!--         <br> -->
-<!--         <div class="btn-group"> -->
+
           <a href="/users/sign_in" class='btn btn-success btn-large btn-block'>Sign In</a>
           <a href="/users/sign_up" class='btn btn-info btn-large btn-block'>Sign Up</a>
-<!--         </div> -->
-<!--       </div> -->
+
     <% end %>
 
   </div>
