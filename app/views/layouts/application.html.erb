@@ -3,7 +3,7 @@
 <head>
   <title>Land Story Corps</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
   
   <%= csrf_meta_tags %>
 </head>
@@ -33,6 +33,7 @@
   <%= yield %>
   </div>
   <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   
 </body>
 </html>
