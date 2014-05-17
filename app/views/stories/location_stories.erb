@@ -34,6 +34,27 @@
           <% end %>
         </li>
       <% end %>
+      <% @otherstories.each do |story| %>
+        <li class="media">
+          <%= link_to "/stories/#{story.id}" do %>
+            <span class="fa-stack fa-lg media-object pull-left">
+              <i class="fa fa-square fa-stack-2x"></i>
+              <i class="fa fa-film fa-stack-1x fa-inverse"></i>
+            </span>
+          <% end %>
+          <%= link_to story, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <span class="fa-stack fa-lg media-object pull-left">
+              <i class="fa fa-square fa-stack-2x"></i>
+              <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+            </span>
+          <% end %>
+          <%= link_to "/stories/#{story.id}" do %>
+            <div class="media-body">
+              <h4 class="media-heading"><%= story.title %></h4>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
  
 
