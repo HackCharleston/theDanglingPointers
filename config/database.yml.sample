@@ -54,7 +54,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: d592g95ffmjegr #landstorycorps_development
+  database: blah #landstorycorps_development
   pool: 5
-  username: zafydfewatyydo #landstorycorps
-  password: 'VyLuL1Wf2169qCytqh6gHXa0Uj' #'danglingps'
+  username: blah #landstorycorps
+  password: 'blah' #'danglingps'
