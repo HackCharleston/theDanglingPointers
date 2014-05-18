@@ -39,14 +39,21 @@ a{
  body { margin:0; padding:0; }
   #map { 
     position:absolute; 
-    top:85px; 
+    top:150px; 
     left:0;
     bottom:0; 
     width:100%; 
   }
+   #storyMap { 
+    position:absolute; 
+    top:153px; 
+    right:0;
+    bottom:0; 
+    width:50%; 
+  }
       #map-ui {
     position: absolute;
-    top: 175px;
+    top: 225px;
     left: 20px;
     list-style: none;
     margin: 0;
@@ -63,7 +70,7 @@ a{
     padding: 0;
     border: 1px solid #BBB;
     border-bottom-width: 0;
-    min-width: 138px;
+    min-width: 100px;
     padding: 10px;
     text-decoration: none;
 }
@@ -88,4 +95,79 @@ a{
     border-color: #3887BE;
     border-top-color: #FFF;
     color: #FFF;
+}
+.leaflet-popup-content p > a.btn {
+    color:#fff;
+}
+nav {
+height: 110px;
+background: url(/assets/nav-bg.gif) center top no-repeat;
+min-width: 960px;
+}
+#logo {
+position: absolute;
+top: 6px;
+left: 372px;
+}
+header {
+  width: 100%;
+  margin: 0 auto;
+  background: url(/assets/bg.gif) center top repeat-x;
+  position: relative;
+  z-index: 900;
+}
+#nav-container {
+width: 960px;
+margin: 0 auto;
+position: relative;
+padding-top: 50px;
+}
+#nav-left {
+float: left;
+width: 350px;
+}
+#nav-right {
+float: right;
+width: 350px;
+}
+.group {
+display: block;
+zoom: 1;
+}
+#nav-left a {
+float: left;
+}
+#nav-right a {
+/*float: right;*/
+margin-left:30px;
+}
+
+#nav-left a, #nav-right a {
+color: #e1d9c4;
+text-transform: uppercase;
+text-decoration: none;
+text-align: center;
+font-family: futura-pt,sans-serif;
+font-weight: 700;
+font-size: 1em;
+width: 200px;
+line-height: 100%;
+text-shadow: 1px 1px 1px #385b53;
+}
+
+#header-points {
+  height: 18px;
+  width: 100%;
+  background: url(/assets/points.png) center top repeat-x;
+  position: absolute;
+  bottom: -18px;
+  left: 0px;
+}
+.soul {
+  background: #d4e3d8;
+  padding: 14px 0 8px 0;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+
 }

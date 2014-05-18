@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :storyfile %><br>
-    <%= f.file_field :storyfile, accept:"audio/*", capture:""%>
+    <%= f.file_field :storyfile, accept:"audio/*,video/*,image/*", capture:""%>
   </div>
   <div class="field">
     <%= f.hidden_field :storyfile_cache %>

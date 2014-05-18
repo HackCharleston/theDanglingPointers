@@ -5,7 +5,7 @@
       <%= link_to 'Edit', edit_story_path(@story) %>
       <%= @story.title %>
     </h3>
-
+   
     <%= video_tag(@story.storyfile.url , autoplay: true, controls: true, id: "vidPlayer") %>
   </div>
 </div>

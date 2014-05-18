@@ -15,4 +15,4 @@
 //= require pointsLayer
 //= require static_pages
 //= require turbolinks
-//= require_tree .
+

@@ -16,6 +16,7 @@ class StoriesController < ApplicationController
     @stories = current_user.stories.where(:latitude => @lat, :longitude => @long);
     # @otherstories = Story.where(:latitude => @lat, :longitude => @long);
     @otherstories = Story.all
+    render :layout => 'locations'
 
   end
 

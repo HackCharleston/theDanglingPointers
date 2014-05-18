@@ -1,4 +1,4 @@
-var map = L.map('map').setView([32.78233,-79.934236], 9);
+var map = L.map('map').setView([32.78233,-79.934236], 9);;
 	var ui = document.getElementById('map-ui');
 	var locateLayer = L.mapbox.featureLayer().addTo(map);
 $(function() {
@@ -11,15 +11,19 @@ var oltStoryTellers = {
 		this.initEvents();
 	},
 	initStyling: function() {
+		map.setView([32.78233,-79.934236], 10);
 		
-		oltStoryTellers.addLayer(L.mapbox.tileLayer('calweb.i87boplm'), 'Base Map', 1);
+		oltStoryTellers.addLayer(L.mapbox.tileLayer('calweb.i95d7glk'), 'Base Map', 1);
 		oltStoryTellers.addLayer(L.geoJson(easements), 'Easements', 2);
-		oltStoryTellers.addLayer(L.geoJson(easementPoints, { onEachFeature: oltStoryTellers.onEachFeature }), 'Angel Oak', 3);
+		oltStoryTellers.addLayer(L.geoJson(easementPoints, { onEachFeature: oltStoryTellers.onEachFeature }), 'Story Marker', 3);
 	},
 	initEvents: function() {
 		$("#map-ui").on("click", "#geolocate", function(e) {
 			oltStoryTellers.locateMe(e)
 		});
+	},
+	placeMap: function() {
+
 	},
 	addLayer: function(layer, name, zIndex) {
 		layer
@@ -52,23 +56,23 @@ var oltStoryTellers = {
     ui.appendChild(item);
 	},
 	onEachFeature: function(feature, layer) {
-console.log(feature.geometry);
+
 		var popupContent = [
 			"<h2>",
 			feature.properties.name,
 			"</h2>",
-			"<p>View and Tell Your Story ",
-			"<a class=\"btn btn-success\" ",
+			"<p>View and Tell Your Story</p>",
+			"<p><a class=\"btn btn-success\" ",
 			"href=\"/location/",
-			feature.properties.lng,
+			encodeURIComponent(feature.properties.lng),
 			"/",
-			feature.properties.lat,
+			encodeURIComponent(feature.properties.lat),
 			"/",
 			feature.properties.FOCUS_AREA,
 			"/",
 			feature.properties.name,
 			"\">",
-			"View/Add Story",
+			"<span class=\"fa fa-plus\"></span> View/Add Story",
 			"</a>",
 			"</p>"
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Land Story Corps</title>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+      <nav>
+          <div id="nav-container" class="group">
+              <a href="/" id="logo"><img src="/assets/oltLogo.png" alt="Lowcountry Open Land Trust"></a>
+                <div id="nav-left" class="group">
+                 
+                </div>
+                <div id="nav-right" class="group">
+                  <% if user_signed_in? %>
+                  <%= link_to destroy_user_session_path, :method => :delete do %>
+                      Sign Out <i class="fa fa-sign-out fa-2x"></i>
+                  <% end %>
+                 <% end %>
+                 
+                </div>
+            </div>
+        </nav>
+      <div id="header-points" style="bottom:26px;"></div>
+        <div class="soul"><a href="http://lolt.org/soul-of-the-lowcountry"><img src="/assets/soul-of-the-lowcountry-top.png"></a></div>
+    </header>
+  <div class="container-fluid">
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+
+  <%= yield %>
+  </div>
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+  <%= javascript_include_tag "detail", "data-turbolinks-track" => true %>
+  <script>
+
+ 
+  </script>
+  
+</body>
+</html>

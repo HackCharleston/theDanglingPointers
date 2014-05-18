@@ -13,6 +13,6 @@
  *= require bootstrap-responsive.min
  *= require zall
  *= require_self
- *= require_tree .
+ 
 
  */
