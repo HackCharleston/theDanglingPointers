@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
 //= require oltEasements
 //= require pointsLayer
 //= require static_pages

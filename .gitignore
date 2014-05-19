@@ -18,3 +18,5 @@
 /public/uploads/*
 # Ignore .DS_Store
 *.DS_Store
+
+*database.yml
